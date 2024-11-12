@@ -12,7 +12,7 @@ data_path = 'customer_inquiries.csv'
 data = pd.read_csv(data_path)
 
 # Load the model
-with open('rf_model.pkl', 'rb') as file:
+with open('best_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Streamlit Title
