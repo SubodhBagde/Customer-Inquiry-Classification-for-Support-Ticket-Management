@@ -5,19 +5,21 @@ from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import seaborn as sns
+from ydata_profiling import ProfileReport
+from streamlit_pandas_profiling import st_profile_report
 
 # Load the dataset
 data_path = 'customer_inquiries.csv'
 data = pd.read_csv(data_path)
 
 # Load the model
-with open('rfpkl.pkl', 'rb') as file:
+with open('rf_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Streamlit Title
 st.title("Customer Inquiry Classification for Support Ticket Management Dashboard")
 
-tabs = st.tabs(["Classify", "Ticket Inquires/Complaints", "Insights"])
+tabs = st.tabs(["Classify", "Ticket Inquires/Complaints", "Insights", "Dataset Statistics"])
 
 with tabs[0]:
     st.header("Classify Inquiry Category")
@@ -54,3 +56,9 @@ with tabs[2]:
     plt.xlabel("Number of Inquiries")
     plt.ylabel("Category")
     st.pyplot(plt)
+    
+with tabs[3]:
+    st.header('`streamlit_pandas_profiling`')
+    df = pd.read_csv('https://raw.githubusercontent.com/SubodhBagde/Customer-Inquiry-Classification-for-Support-Ticket-Management/refs/heads/main/customer_inquiries.csv')
+    pr = ProfileReport(df, title="Pandas Profiling Report")
+    st_profile_report(pr)
