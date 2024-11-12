@@ -19,7 +19,7 @@ with open('rf_model.pkl', 'rb') as file:
 # Streamlit Title
 st.title("Customer Inquiry Classification for Support Ticket Management Dashboard")
 
-tabs = st.tabs(["Classify", "Ticket Inquires/Complaints", "Insights", "Dataset Statistics"])
+tabs = st.tabs(["Classify", "Ticket Inquires/Complaints", "Insights"])
 
 with tabs[0]:
     st.header("Classify Inquiry Category")
@@ -57,8 +57,3 @@ with tabs[2]:
     plt.ylabel("Category")
     st.pyplot(plt)
     
-with tabs[3]:
-    st.header('`streamlit_pandas_profiling`')
-    df = pd.read_csv('https://raw.githubusercontent.com/SubodhBagde/Customer-Inquiry-Classification-for-Support-Ticket-Management/refs/heads/main/customer_inquiries.csv')
-    pr = ProfileReport(df, title="Pandas Profiling Report")
-    st_profile_report(pr)
