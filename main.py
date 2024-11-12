@@ -5,8 +5,7 @@ from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import seaborn as sns
-from ydata_profiling import ProfileReport
-from streamlit_pandas_profiling import st_profile_report
+
 
 # Load the dataset
 data_path = 'customer_inquiries.csv'
