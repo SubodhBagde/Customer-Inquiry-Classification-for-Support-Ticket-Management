@@ -12,21 +12,21 @@ data_path = 'customer_inquiries.csv'
 data = pd.read_csv(data_path)
 
 # Load the model
-with open('new_model.pkl', 'rb') as file:
+with open('rfpkl.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # Streamlit Title
 st.title("Customer Inquiry Classification for Support Ticket Management Dashboard")
 
-tabs = st.tabs(["Predict", "Ticket Inquires/Complaints", "Insights"])
+tabs = st.tabs(["Classify", "Ticket Inquires/Complaints", "Insights"])
 
 with tabs[0]:
-    st.header("Predict Inquiry Category")
+    st.header("Classify Inquiry Category")
     user_input = st.text_area("Enter your inquiry:")
-    if st.button("Predict", key='predict_button'):
+    if st.button("Classify", key='predict_button'):
         if user_input.strip():
             prediction = model.predict([user_input])[0]
-            st.write(f"The predicted category is: **{prediction}**")
+            st.write(f"The entered inquiry lies in **{prediction}** category.")
         else:
             st.write("Please enter an inquiry to get a prediction.")
 
